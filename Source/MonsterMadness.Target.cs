@@ -9,6 +9,6 @@ public class MonsterMadnessTarget : TargetRules
 	{
 		Type = TargetType.Game;
 
-		ExtraModuleNames.AddRange( new string[] { "MonsterMadness" } );
+		ExtraModuleNames.AddRange( new string[] { "MonsterMadness", "MonsterMadnessMenu" } );
 	}
 }

@@ -9,6 +9,6 @@ public class MonsterMadnessEditorTarget : TargetRules
 	{
 		Type = TargetType.Editor;
 
-		ExtraModuleNames.AddRange( new string[] { "MonsterMadness" } );
+		ExtraModuleNames.AddRange( new string[] { "MonsterMadness", "MonsterMadnessMenu" } );
 	}
 }

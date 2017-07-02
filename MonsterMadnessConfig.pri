@@ -581,5 +581,6 @@ OTHER_FILES += \
 	"$$unrealRootPath/Engine/Plugins/Tests/RuntimeTests/Source/RuntimeTests/RuntimeTests.Build.cs" \
 	"$$unrealRootPath/Engine/Plugins/Tests/ScreenshotTools/Source/ScreenshotTools/ScreenshotTools.Build.cs" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/MonsterMadness.Build.cs" \
+	"$$MonsterMadnessRootPath/Source/MonsterMadnessMenu/MonsterMadnessMenu.Build.cs" \
  
 

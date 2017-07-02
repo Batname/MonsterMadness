@@ -6830,5 +6830,8 @@ SOURCES += \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/Private/MainPlayerController.cpp" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/Private/PlayerCharacter.cpp" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/Private/PlayerHUD.cpp" \
+	"$$MonsterMadnessRootPath/Source/MonsterMadnessMenu/MonsterMadnessMenu.cpp" \
+	"$$MonsterMadnessRootPath/Source/MonsterMadnessMenu/Private/MenuGameModeBase.cpp" \
+	"$$MonsterMadnessRootPath/Source/MonsterMadnessMenu/Private/MenuWidget.cpp" \
  
 

@@ -2240,4 +2240,8 @@ INCLUDEPATH += \
 	Source \
 	Intermediate/Build/Linux/B4D820EA/UE4Editor/Inc/MonsterMadness \
 	Source/MonsterMadness \
+	Source/MonsterMadnessMenu/Private \
+	Source/MonsterMadnessMenu/Public \
+	Intermediate/Build/Linux/B4D820EA/UE4Editor/Inc/MonsterMadnessMenu \
+	Source/MonsterMadnessMenu \
 
