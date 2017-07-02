@@ -2,10 +2,14 @@
 
 
 #include "MenuWidget.h"
+#include "Kismet/GameplayStatics.h"
 
 void UMenuWidget::LoadFirstLevel()
 {
-	UE_LOG(LogTemp, Warning, TEXT("UMenuWidget::LoadFirstLevel"));
+	UGameplayStatics::OpenLevel(GetWorld(), "FirstLevel");
 }
 
-
+void UMenuWidget::QuitGame()
+{
+	GetWorld()->GetFirstPlayerController()->ConsoleCommand("quit");
+}

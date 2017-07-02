@@ -18,5 +18,9 @@ protected:
 	/** Load first level */
 	UFUNCTION(BlueprintCallable, Category = MainMenu)
 	void LoadFirstLevel();
+
+	/** Load first level */
+	UFUNCTION(BlueprintCallable, Category = MainMenu)
+	void QuitGame();
 	
 };
