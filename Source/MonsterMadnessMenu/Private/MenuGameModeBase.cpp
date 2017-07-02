@@ -3,6 +3,10 @@
 
 #include "MenuGameModeBase.h"
 
+void AMenuGameModeBase::BeginPlay()
+{
+	Super::BeginPlay();
+}
 
 
 

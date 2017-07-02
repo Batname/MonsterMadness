@@ -3,6 +3,9 @@
 
 #include "MenuWidget.h"
 
-
+void UMenuWidget::LoadFirstLevel()
+{
+	UE_LOG(LogTemp, Warning, TEXT("UMenuWidget::LoadFirstLevel"));
+}
 
 

@@ -14,7 +14,9 @@ class MONSTERMADNESSMENU_API UMenuWidget : public UUserWidget
 {
 	GENERATED_BODY()
 	
-	
-	
+protected:
+	/** Load first level */
+	UFUNCTION(BlueprintCallable, Category = MainMenu)
+	void LoadFirstLevel();
 	
 };

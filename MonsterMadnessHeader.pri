@@ -8844,7 +8844,9 @@ HEADERS += \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/Public/PlayerCharacter.h" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/Public/PlayerHUD.h" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadnessMenu/MonsterMadnessMenu.h" \
+	"$$MonsterMadnessRootPath/Source/MonsterMadnessMenu/Public/MenuCharacter.h" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadnessMenu/Public/MenuGameModeBase.h" \
+	"$$MonsterMadnessRootPath/Source/MonsterMadnessMenu/Public/MenuPlayerController.h" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadnessMenu/Public/MenuWidget.h" \
  
 
