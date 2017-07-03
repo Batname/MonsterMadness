@@ -26,6 +26,14 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+private:
+	void Attack();
 	
-	
+protected:
+
+	UPROPERTY(VisibleAnywhere)
+	class USpringArmComponent* ThirdPersonSpringArmComp;
+
+	UPROPERTY(VisibleAnywhere)
+	class UCameraComponent* ThirdPersonCameraComp;
 };
