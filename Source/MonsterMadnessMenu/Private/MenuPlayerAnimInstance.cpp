@@ -15,5 +15,23 @@ void UMenuPlayerAnimInstance::UpdateMovementSpeed()
 
 void UMenuPlayerAnimInstance::Attack()
 {
-	UE_LOG(LogTemp, Warning, TEXT("UMenuPlayerAnimInstance::Attack"));
+	if (MeleeAttackMontage)
+	{
+		FName CurrentSection = Montage_GetCurrentSection(MeleeAttackMontage);
+
+		if (CurrentSection.IsNone())
+		{
+			// For now all the time is true
+			Montage_Play(MeleeAttackMontage);
+		}
+	}
+}
+
+void UMenuPlayerAnimInstance::RunIdleSwordMontage()
+{
+	if (IdleSwordMontage)
+	{
+		// For now all the time is true
+		Montage_Play(IdleSwordMontage);
+	}
 }

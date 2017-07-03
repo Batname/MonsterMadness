@@ -28,6 +28,12 @@ public:
 
 private:
 	void Attack();
+
+	UFUNCTION()
+	void RunIdleSwordMontage();
+
+	UPROPERTY()
+	class UMenuPlayerAnimInstance* AnimInstanceRef;
 	
 protected:
 

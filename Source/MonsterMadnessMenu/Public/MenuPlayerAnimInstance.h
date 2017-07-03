@@ -35,7 +35,12 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	bool bAcceptsThirdAttackInput;
 
+	/** The idle sword montage */
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	UAnimMontage* IdleSwordMontage;
+
 public:
 	/** Determinates which attack animaiton will be played */
 	void Attack();
+	void RunIdleSwordMontage();
 };
