@@ -14,7 +14,17 @@ class MONSTERMADNESS_API APlayerHUD : public AHUD
 {
 	GENERATED_BODY()
 	
+private:
+	/** Life level cpp class reference */
+	UPROPERTY()
+	class ULifeLevelWidget* LifeLevelWidget;
 	
-	
-	
+protected:
+	/** LifeLevel blueprint reference */
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<class ULifeLevelWidget> BP_LifeLevelWidget;
+
+public:
+	virtual void BeginPlay() override;
+	virtual void DrawHUD() override;
 };

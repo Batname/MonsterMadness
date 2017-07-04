@@ -3902,10 +3902,6 @@
     <Include Path="/home/bat/Apps/UnrealEngine/Engine/Source/Runtime/AudioMixer/Public/DSP" />
     <Include Path="/home/bat/Apps/UnrealEngine/Engine/Intermediate/Build/Linux/B4D820EA/UE4Editor/Inc/AudioMixer" />
     <Include Path="/home/bat/Apps/UnrealEngine/Engine/Source/Runtime/AudioMixer" />
-    <Include Path="/media/bat/SecondSSD/Projects/Unreal/MonsterMadness/Source/MonsterMadnessMenu/Private" />
-    <Include Path="/media/bat/SecondSSD/Projects/Unreal/MonsterMadness/Source/MonsterMadnessMenu/Public" />
-    <Include Path="/media/bat/SecondSSD/Projects/Unreal/MonsterMadness/Intermediate/Build/Linux/B4D820EA/UE4Editor/Inc/MonsterMadnessMenu" />
-    <Include Path="/media/bat/SecondSSD/Projects/Unreal/MonsterMadness/Source/MonsterMadnessMenu" />
     <Include Path="/home/bat/Apps/UnrealEngine/Engine/Source/Runtime/UMG/Public" />
     <Include Path="/home/bat/Apps/UnrealEngine/Engine/Source/Runtime/UMG/Public/Animation" />
     <Include Path="/home/bat/Apps/UnrealEngine/Engine/Source/Runtime/UMG/Public/Binding" />
@@ -3925,6 +3921,10 @@
     <Include Path="/home/bat/Apps/UnrealEngine/Engine/Source/Runtime/MovieSceneTracks/Public/Tracks" />
     <Include Path="/home/bat/Apps/UnrealEngine/Engine/Intermediate/Build/Linux/B4D820EA/UE4Editor/Inc/MovieSceneTracks" />
     <Include Path="/home/bat/Apps/UnrealEngine/Engine/Source/Runtime/MovieSceneTracks" />
+    <Include Path="/media/bat/SecondSSD/Projects/Unreal/MonsterMadness/Source/MonsterMadnessMenu/Private" />
+    <Include Path="/media/bat/SecondSSD/Projects/Unreal/MonsterMadness/Source/MonsterMadnessMenu/Public" />
+    <Include Path="/media/bat/SecondSSD/Projects/Unreal/MonsterMadness/Intermediate/Build/Linux/B4D820EA/UE4Editor/Inc/MonsterMadnessMenu" />
+    <Include Path="/media/bat/SecondSSD/Projects/Unreal/MonsterMadness/Source/MonsterMadnessMenu" />
   </WorkspaceParserPaths>
   <Project Name="UE4Client" Path="Intermediate/ProjectFiles/UE4Client.project" Active="No" />
   <Project Name="UE4Editor" Path="Intermediate/ProjectFiles/UE4Editor.project" Active="No" />

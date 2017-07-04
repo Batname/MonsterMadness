@@ -3899,10 +3899,6 @@
 /home/bat/Apps/UnrealEngine/Engine/Source/Runtime/AudioMixer/Public/DSP
 /home/bat/Apps/UnrealEngine/Engine/Intermediate/Build/Linux/B4D820EA/UE4Editor/Inc/AudioMixer
 /home/bat/Apps/UnrealEngine/Engine/Source/Runtime/AudioMixer
-/media/bat/SecondSSD/Projects/Unreal/MonsterMadness/Source/MonsterMadnessMenu/Private
-/media/bat/SecondSSD/Projects/Unreal/MonsterMadness/Source/MonsterMadnessMenu/Public
-/media/bat/SecondSSD/Projects/Unreal/MonsterMadness/Intermediate/Build/Linux/B4D820EA/UE4Editor/Inc/MonsterMadnessMenu
-/media/bat/SecondSSD/Projects/Unreal/MonsterMadness/Source/MonsterMadnessMenu
 /home/bat/Apps/UnrealEngine/Engine/Source/Runtime/UMG/Public
 /home/bat/Apps/UnrealEngine/Engine/Source/Runtime/UMG/Public/Animation
 /home/bat/Apps/UnrealEngine/Engine/Source/Runtime/UMG/Public/Binding
@@ -3922,3 +3918,7 @@
 /home/bat/Apps/UnrealEngine/Engine/Source/Runtime/MovieSceneTracks/Public/Tracks
 /home/bat/Apps/UnrealEngine/Engine/Intermediate/Build/Linux/B4D820EA/UE4Editor/Inc/MovieSceneTracks
 /home/bat/Apps/UnrealEngine/Engine/Source/Runtime/MovieSceneTracks
+/media/bat/SecondSSD/Projects/Unreal/MonsterMadness/Source/MonsterMadnessMenu/Private
+/media/bat/SecondSSD/Projects/Unreal/MonsterMadness/Source/MonsterMadnessMenu/Public
+/media/bat/SecondSSD/Projects/Unreal/MonsterMadness/Intermediate/Build/Linux/B4D820EA/UE4Editor/Inc/MonsterMadnessMenu
+/media/bat/SecondSSD/Projects/Unreal/MonsterMadness/Source/MonsterMadnessMenu
