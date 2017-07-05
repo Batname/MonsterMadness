@@ -6827,6 +6827,10 @@ SOURCES += \
 	"$$unrealRootPath/Engine/Plugins/Tests/RuntimeTests/Source/RuntimeTests/Private/Slate/RichTextMarkupProcessingTest.cpp" \
 	"$$unrealRootPath/Engine/Plugins/Tests/ScreenshotTools/Source/ScreenshotTools/Private/ScreenshotTools.cpp" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/MonsterMadness.cpp" \
+	"$$MonsterMadnessRootPath/Source/MonsterMadness/Private/EnemyAIController.cpp" \
+	"$$MonsterMadnessRootPath/Source/MonsterMadness/Private/EnemyAnimInstance.cpp" \
+	"$$MonsterMadnessRootPath/Source/MonsterMadness/Private/EnemyCharacter.cpp" \
+	"$$MonsterMadnessRootPath/Source/MonsterMadness/Private/EnemyInterface.cpp" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/Private/LifeLevelWidget.cpp" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/Private/MainGameModeBase.cpp" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/Private/MainGameStateBase.cpp" \

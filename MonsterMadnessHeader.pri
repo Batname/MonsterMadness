@@ -8840,6 +8840,10 @@ HEADERS += \
 	"$$unrealRootPath/Engine/Plugins/Tests/RuntimeTests/Source/RuntimeTests/Public/RuntimeTests.h" \
 	"$$unrealRootPath/Engine/Plugins/Tests/ScreenshotTools/Source/ScreenshotTools/Public/ScreenshotTools.h" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/MonsterMadness.h" \
+	"$$MonsterMadnessRootPath/Source/MonsterMadness/Public/EnemyAIController.h" \
+	"$$MonsterMadnessRootPath/Source/MonsterMadness/Public/EnemyAnimInstance.h" \
+	"$$MonsterMadnessRootPath/Source/MonsterMadness/Public/EnemyCharacter.h" \
+	"$$MonsterMadnessRootPath/Source/MonsterMadness/Public/EnemyInterface.h" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/Public/LifeLevelWidget.h" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/Public/MainGameModeBase.h" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/Public/MainGameStateBase.h" \
