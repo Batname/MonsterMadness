@@ -58,6 +58,9 @@ protected:
 	 */
 	void TurnAtRate(float Rate);
 
+	/** Escape game input action */
+	void EscapeGameInput();
+
 private:
 	/** Set Movement Input */
 	void MovementInput(float Value, EAxis::Type Axis);

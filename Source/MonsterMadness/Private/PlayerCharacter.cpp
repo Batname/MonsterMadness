@@ -70,6 +70,8 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
+	PlayerInputComponent->BindAction("QuitGame", IE_Pressed, this, &APlayerCharacter::EscapeGameInput);
+
 	PlayerInputComponent->BindAxis("MoveForward", this, &APlayerCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &APlayerCharacter::MoveRight);
 
@@ -106,4 +108,9 @@ void APlayerCharacter::MovementInput(float Value, EAxis::Type Axis)
 void APlayerCharacter::TurnAtRate(float Rate)
 {
 	AddControllerYawInput(Rate * BaseTurnRate * GetWorld()->GetDeltaSeconds());
+}
+
+void APlayerCharacter::EscapeGameInput()
+{
+	GetWorld()->GetFirstPlayerController()->ConsoleCommand("quit");
 }
