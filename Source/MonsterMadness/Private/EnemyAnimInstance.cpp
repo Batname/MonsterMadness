@@ -2,14 +2,18 @@
 
 
 #include "EnemyAnimInstance.h"
+#include "GameFramework/PawnMovementComponent.h"
 
-void UEnemyAnimInstance::UpdateMovementSpeed()
+
+void UEnemyAnimInstance::UpdateAnimationProperties()
 {
 	// Try to cast valid Pawn
 	APawn* Pawn = TryGetPawnOwner();
 
 	if (Pawn != nullptr)
 	{
+		bIsFalling = Pawn->GetMovementComponent()->IsFalling();
+
 		MovementSpeed = Pawn->GetVelocity().Size();
 	}
 }

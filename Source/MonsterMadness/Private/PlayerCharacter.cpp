@@ -2,6 +2,7 @@
 
 
 #include "PlayerCharacter.h"
+#include "Bomb.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
 #include "Camera/CameraComponent.h"
@@ -54,6 +55,8 @@ void APlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	// Init bomb count
+	BombCount = MaxBombCount;
 }
 
 // Disabled for now
@@ -71,6 +74,8 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
 	PlayerInputComponent->BindAction("QuitGame", IE_Pressed, this, &APlayerCharacter::EscapeGameInput);
+	PlayerInputComponent->BindAction("SpawnBomb", IE_Pressed, this, &APlayerCharacter::AttempToSpawnBomb);
+
 
 	PlayerInputComponent->BindAxis("MoveForward", this, &APlayerCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &APlayerCharacter::MoveRight);
@@ -113,4 +118,19 @@ void APlayerCharacter::TurnAtRate(float Rate)
 void APlayerCharacter::EscapeGameInput()
 {
 	GetWorld()->GetFirstPlayerController()->ConsoleCommand("quit");
+}
+
+void APlayerCharacter::AttempToSpawnBomb()
+{
+	if (HasBombs())
+	{
+		BombCount--;
+
+		FActorSpawnParameters SpawnParameters;
+		SpawnParameters.Instigator = this;
+		SpawnParameters.Owner = GetController();
+
+		// Spawn the bomb
+		GetWorld()->SpawnActor<ABomb>(BP_Bomb, GetActorLocation() + GetActorForwardVector() * 200, GetActorRotation(), SpawnParameters);
+	}
 }

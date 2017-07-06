@@ -6,12 +6,13 @@
 #include "BehaviorTree/BlackboardComponent.h"
 #include "BehaviorTree/BehaviorTreeComponent.h"
 #include "BehaviorTree/BehaviorTree.h"
+#include "Classes/BrainComponent.h"
 
 
 AEnemyAIController::AEnemyAIController()
 {
 	// Initialize the behaviour tree components
-	BehaviorComp = CreateDefaultSubobject<UBehaviorTreeComponent>(TEXT("BehaviorComp"));
+	BrainComponent = BehaviorComp = CreateDefaultSubobject<UBehaviorTreeComponent>(TEXT("BehaviorComp"));
 	BlackboardComp = CreateDefaultSubobject<UBlackboardComponent>(TEXT("BlackboardComp"));
 }
 
@@ -41,4 +42,9 @@ void AEnemyAIController::SetSeenTarget(APawn* PlayerPawn)
 	{
 		BlackboardComp->SetValueAsObject(BlackboardKey, PlayerPawn);
 	}
+}
+
+void AEnemyAIController::StopLogic()
+{
+	BrainComponent->StopLogic("");
 }

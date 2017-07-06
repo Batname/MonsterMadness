@@ -19,6 +19,11 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	/** Bomb Blueprint */
+	UPROPERTY(EditAnywhere, Category = BombProps)
+	TSubclassOf<class ABomb> BP_Bomb;
+
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -61,7 +66,22 @@ protected:
 	/** Escape game input action */
 	void EscapeGameInput();
 
+	/** Number of player bombs */
+	UPROPERTY(VisibleAnywhere, Category = Stats)
+	int32 BombCount;
+
+	/** The max bomb of the character */
+	UPROPERTY(EditAnywhere, Category = Stats)
+	int32 MaxBombCount = 30;
+
 private:
 	/** Set Movement Input */
 	void MovementInput(float Value, EAxis::Type Axis);
+
+	/** Will try to spawn bomb */
+	UFUNCTION()
+	void AttempToSpawnBomb();
+
+	/** If any bombs left */
+	bool HasBombs() { return BombCount > 0; }
 };

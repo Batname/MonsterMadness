@@ -18,6 +18,8 @@ private:
 	/** Behavior tree component reference */
 	class UBehaviorTreeComponent* BehaviorComp;
 
+	class UBrainComponent* BrainComponent;
+
 	/** Black board comp reference */
 	class UBlackboardComponent* BlackboardComp;
 	
@@ -35,4 +37,6 @@ public:
 	/** Set the sensed target in the blackboard */
 	UFUNCTION()
 	void SetSeenTarget(class APawn* PlayerPawn);
+
+	void StopLogic();
 };

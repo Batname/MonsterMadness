@@ -31,4 +31,32 @@ public:
 	/** The behavior tree of the Character */
 	UPROPERTY(EditAnywhere, Category = EnemyAI)
 	class UBehaviorTree* BehaviorTree;
+
+protected:
+	/** The health of the character */
+	UPROPERTY(VisibleAnywhere, Category = EnemyAI)
+	float Health;
+
+	/** The max health  of the enemy */
+	UPROPERTY(EditAnywhere, Category = EnemyAI)
+	float MaxHealth = 100.f;
+
+	/** Text render compnent - show enemy life */
+	UPROPERTY(VisibleAnywhere)
+	class UTextRenderComponent* EnemyLifeText;
+
+private:
+	/** Initalizes health */
+	UFUNCTION()
+	void InitHealth();
+
+	/** Update enemy text */
+	UFUNCTION()
+	void UpdateEnemyLifeText();
+
+	UFUNCTION()
+	void Die();
+
+public:
+	virtual float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 };

@@ -14,13 +14,17 @@ class MONSTERMADNESS_API UEnemyAnimInstance : public UAnimInstance
 {
 	GENERATED_BODY()
 protected:
+	/** True if is air of falling */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	bool bIsFalling;
+
 	/** Holds a reference to character's movement speed */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	float MovementSpeed;
 
 	/** Updates the Movement Speed variable */
 	UFUNCTION(BlueprintCallable, Category = EnemyAnimationUpdates)
-	void UpdateMovementSpeed();
+	void UpdateAnimationProperties();
 
 public:
 	/** TODO implement AI Enemy Attack */
