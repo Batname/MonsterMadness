@@ -3,8 +3,10 @@
 
 #include "EnemySpawnVolume.h"
 #include "EnemyCharacter.h"
+#include "PlayerCharacter.h"
 #include "Components/BoxComponent.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "Kismet/GameplayStatics.h"
 
 
 // Sets default values
@@ -56,9 +58,8 @@ void AEnemySpawnVolume::SetSpawningActive(bool bShouldSpawn)
 
 void AEnemySpawnVolume::SpawnEnemy()
 {
-
 	// Clear timeout and exit if we get max spawned enemies
-	if (CurrentSpawn >= SpawnCount)
+	if (CurrentSpawn == SpawnCount)
 	{
 		GetWorldTimerManager().ClearTimer(SpawnTimer);
 		return;
@@ -80,18 +81,24 @@ void AEnemySpawnVolume::SpawnEnemy()
 			// GetEandom location to Spawn
 			FVector SpawnLocation = GetRandomPointInVolume();
 
+			// Get player Location
+			ACharacter* Character = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
+			FVector CharacterLocation = Character->GetActorLocation();
+
 			// Get a random rotation
-			// TODO - setup rotation to player
 			FRotator SpawnRotation;
-			SpawnRotation.Yaw = FMath::FRand() * 360.f;
+			SpawnRotation.Yaw = (CharacterLocation - SpawnLocation).Rotation().Yaw;
 			SpawnRotation.Pitch = 0.f;
 			SpawnRotation.Roll = 0.f;
 
 			// Spawn an Enemy
-			AEnemyCharacter* EnemyCharacter = World->SpawnActor<AEnemyCharacter>(BP_EnemyCharacter, SpawnLocation, SpawnRotation, SpawnParams);
+			ACharacter* EnemyCharacter = World->SpawnActor<AEnemyCharacter>(BP_EnemyCharacter, SpawnLocation, SpawnRotation, SpawnParams);
 
 			SpawnDelay = FMath::FRandRange(SpawnDelayRangeLow, SpawnDelayRangeHigh);
 			GetWorldTimerManager().SetTimer(SpawnTimer, this, &AEnemySpawnVolume::SpawnEnemy, SpawnDelay, false);
+
+			// Increase counter
+			CurrentSpawn++;
 		}
 	}
 }
