@@ -8844,6 +8844,7 @@ HEADERS += \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/Public/EnemyAnimInstance.h" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/Public/EnemyCharacter.h" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/Public/EnemyInterface.h" \
+	"$$MonsterMadnessRootPath/Source/MonsterMadness/Public/EnemySpawnVolume.h" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/Public/LifeLevelWidget.h" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/Public/MainGameModeBase.h" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/Public/MainGameStateBase.h" \

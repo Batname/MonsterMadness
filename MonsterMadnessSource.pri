@@ -6831,6 +6831,7 @@ SOURCES += \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/Private/EnemyAnimInstance.cpp" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/Private/EnemyCharacter.cpp" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/Private/EnemyInterface.cpp" \
+	"$$MonsterMadnessRootPath/Source/MonsterMadness/Private/EnemySpawnVolume.cpp" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/Private/LifeLevelWidget.cpp" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/Private/MainGameModeBase.cpp" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/Private/MainGameStateBase.cpp" \

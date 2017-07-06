@@ -14,7 +14,9 @@ class MONSTERMADNESS_API AMainGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
 	
-	
+public:
+
+	virtual void BeginPlay() override;
 	
 	
 };
