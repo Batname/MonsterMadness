@@ -19,6 +19,8 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	virtual void Tick(float DeltaSeconds) override;
+
 public:	
 	/** AI behavior when seen the player */
 	UFUNCTION()
@@ -62,4 +64,47 @@ public:
 
 	float SimpleDamage(float Damage);
 
+	UFUNCTION()
+	bool GetIsAttack() const { return bIsAttack; }
+
+// ---- Enamy Raycast
+protected:
+	/** The Height of my Sphere starting form location of enemy */
+	UPROPERTY(EditAnywhere, Category = EnamyRaycast)
+	float SphereHeight = 200.f;
+
+	/** Radious the sphere trace */
+	UPROPERTY(EditAnywhere, Category = EnamyRaycast)
+	float SphereRadius = 500.f;
+
+	/** Sphere sigment, ony for debugging */
+	UPROPERTY(EditAnywhere, Category = EnamyRaycast)
+	float SphereSegments = 100.f;
+
+protected:
+	/** Attach Collision Sphere */
+	UPROPERTY(EditAnywhere, Category = EnamyAttack)
+	class UShapeComponent* AttackHandsSphereComp;
+
+	/** Set Attack status */
+	UPROPERTY()
+	bool bIsAttack = false;
+
+	/** Distance for attack */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	float AttackDistance = 180.f;
+
+	/** Max Rate of damage */
+	UPROPERTY(EditAnywhere, Category = Stats)
+	int32 MaxEnemyDamageRate = 15.f;
+
+	/** Min Rate of damage */
+	UPROPERTY(EditAnywhere, Category = Stats)
+	int32 MinEnemyDamageRate = 3.f;
+
+private:
+	UFUNCTION()
+	void OnBeginAttackSphereOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
+	class APlayerCharacter* PlayerCharacter;
 };

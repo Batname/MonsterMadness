@@ -22,6 +22,14 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	float MovementSpeed;
 
+	/** Holds the current status of slashing */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	bool bIsAttack;
+
+	/** The attack montage */
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	UAnimMontage* AttackMontage;
+
 	/** Updates the Movement Speed variable */
 	UFUNCTION(BlueprintCallable, Category = EnemyAnimationUpdates)
 	void UpdateAnimationProperties();
@@ -29,7 +37,8 @@ protected:
 public:
 	/** TODO implement AI Enemy Attack */
 	UFUNCTION()
-	void Attack();	
-	
-	
+	void PlayAttack();
+
+private:
+	bool bIsPlayingAttack = false;
 };

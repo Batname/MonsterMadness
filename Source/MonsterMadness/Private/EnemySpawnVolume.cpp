@@ -4,6 +4,7 @@
 #include "EnemySpawnVolume.h"
 #include "EnemyCharacter.h"
 #include "PlayerCharacter.h"
+#include "MainGameModeBase.h"
 #include "Components/BoxComponent.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Kismet/GameplayStatics.h"
@@ -18,7 +19,7 @@ AEnemySpawnVolume::AEnemySpawnVolume()
 
 	// Set spawn delay
 	SpawnDelayRangeLow = 1.f;
-	SpawnDelayRangeHigh = 4.5f;
+	SpawnDelayRangeHigh = 2.5f;
 
 	// Spawn enemies count
 	SpawnCount = 6;
@@ -29,7 +30,8 @@ AEnemySpawnVolume::AEnemySpawnVolume()
 void AEnemySpawnVolume::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	MainGameModeBase = Cast<AMainGameModeBase>(GetWorld()->GetAuthGameMode());
 }
 
 
@@ -96,6 +98,12 @@ void AEnemySpawnVolume::SpawnEnemy()
 
 			SpawnDelay = FMath::FRandRange(SpawnDelayRangeLow, SpawnDelayRangeHigh);
 			GetWorldTimerManager().SetTimer(SpawnTimer, this, &AEnemySpawnVolume::SpawnEnemy, SpawnDelay, false);
+
+			// Add reference to game mode array
+			if (MainGameModeBase != nullptr)
+			{
+				MainGameModeBase->GetEnemyCharacters().AddUnique(EnemyCharacter);
+			}
 
 			// Increase counter
 			CurrentSpawn++;

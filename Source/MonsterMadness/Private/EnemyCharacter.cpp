@@ -2,15 +2,21 @@
 
 
 #include "EnemyCharacter.h"
+#include "PlayerCharacter.h"
 #include "EnemyAIController.h"
 #include "Perception/PawnSensingComponent.h"
 #include "Components/TextRenderComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/SkeletalMeshComponent.h"
+#include "Components/SphereComponent.h"
+#include "Kismet/GameplayStatics.h"
+
 
 // Sets default values
 AEnemyCharacter::AEnemyCharacter()
 {
+
+	PrimaryActorTick.bCanEverTick = true;
 
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.f);
@@ -23,6 +29,13 @@ AEnemyCharacter::AEnemyCharacter()
 	EnemyLifeText = CreateDefaultSubobject<UTextRenderComponent>(TEXT("EnemyLifeText"));
 	EnemyLifeText->TextRenderColor = FColor(255, 0, 0, 1);
 	EnemyLifeText->SetupAttachment(RootComponent);
+
+	// Attach Attach sphere
+	AttackHandsSphereComp = CreateDefaultSubobject<USphereComponent>(TEXT("AttackSphereComp"));
+	AttackHandsSphereComp->SetupAttachment(GetMesh(), FName("LeftHand"));
+	AttackHandsSphereComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	AttackHandsSphereComp->OnComponentBeginOverlap.AddDynamic(this, &AEnemyCharacter::OnBeginAttackSphereOverlap);
+
 }
 
 // Called when the game starts or when spawned
@@ -36,8 +49,30 @@ void AEnemyCharacter::BeginPlay()
 		PawnSensingComp->OnSeePawn.AddDynamic(this, &AEnemyCharacter::OnSeePlayer);
 	}
 
+	ACharacter* Character = UGameplayStatics::GetPlayerCharacter(this, 0);
+	if (Character != nullptr)
+	{
+		PlayerCharacter = Cast<APlayerCharacter>(Character);
+	}
+
 	// Init health
 	InitHealth();
+}
+
+void AEnemyCharacter::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+
+	if (PlayerCharacter && PlayerCharacter->bIsAlive && (GetActorLocation() - PlayerCharacter->GetActorLocation()).Size() <= AttackDistance)
+	{
+		bIsAttack = true;
+		AttackHandsSphereComp->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+	}
+	else
+	{
+		bIsAttack = false;
+		AttackHandsSphereComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	}
 }
 
 void AEnemyCharacter::OnSeePlayer(APawn* Pawn)
@@ -107,4 +142,17 @@ void AEnemyCharacter::Die()
 	});
 
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDel, 1.5f, false);
+}
+
+void AEnemyCharacter::OnBeginAttackSphereOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+
+	if ((OtherActor != NULL) && (OtherActor != this) && bIsAttack)
+	{
+		if (OtherActor->IsA<APlayerCharacter>())
+		{
+			float EnemyDamageRate = FMath::FRandRange(MinEnemyDamageRate, MaxEnemyDamageRate);
+			Cast<APlayerCharacter>(OtherActor)->SimpleDamage(EnemyDamageRate);
+		}
+	}
 }

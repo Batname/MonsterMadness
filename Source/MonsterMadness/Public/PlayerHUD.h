@@ -16,15 +16,26 @@ class MONSTERMADNESS_API APlayerHUD : public AHUD
 	
 private:
 	/** Life level cpp class reference */
-	UPROPERTY()
-	class ULifeLevelWidget* LifeLevelWidget;
+	class ULifeLevelWidget* LifeLevelWidget;	
+
+	/** RestartGameWidget cpp class reference */
+	class URestartGameWidget* RestartGameWidget;
 	
 protected:
 	/** LifeLevel blueprint reference */
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<class ULifeLevelWidget> BP_LifeLevelWidget;
 
+	/** RestartGameWidget blueprint reference */
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<class URestartGameWidget> BP_RestartGameWidget;
+
 public:
 	virtual void BeginPlay() override;
 	virtual void DrawHUD() override;
+
+
+	/** Draw restart widget */
+	UFUNCTION()
+	void AddRestartWidget();
 };

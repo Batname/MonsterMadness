@@ -4,6 +4,7 @@
 #include "PlayerCharacter.h"
 #include "Bomb.h"
 #include "EnemyCharacter.h"
+#include "MainGameModeBase.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
 #include "Components/SphereComponent.h"
@@ -11,6 +12,8 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
+
+
 
 // Sets default values
 APlayerCharacter::APlayerCharacter()
@@ -43,7 +46,6 @@ APlayerCharacter::APlayerCharacter()
 	SwordCollisionComp = CreateDefaultSubobject<USphereComponent>(TEXT("SwordCollisionComp"));
 	SwordCollisionComp->SetupAttachment(GetMesh(), FName("RightShoulder"));
 	SwordCollisionComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-	// SwordCollisionComp->SetupAttachment(RootComponent);
 	SwordCollisionComp->OnComponentBeginOverlap.AddDynamic(this, &APlayerCharacter::OnBeginSwordOverlap);
 
 
@@ -67,6 +69,9 @@ void APlayerCharacter::BeginPlay()
 	
 	// Init bomb count
 	BombCount = MaxBombCount;
+
+	// Set Init health
+	Health = MaxHealth;
 }
 
 // Disabled for now
@@ -169,4 +174,20 @@ void APlayerCharacter::OnBeginSwordOverlap(UPrimitiveComponent* OverlappedComp, 
 			Cast<AEnemyCharacter>(OtherActor)->SimpleDamage(SwordDamageRate);
 		}
 	}
+}
+
+float APlayerCharacter::SimpleDamage(float Damage)
+{
+	Health -= Damage;
+
+	if (Health <= 0 )
+	{
+		AMainGameModeBase* MainGameModeBase = Cast<AMainGameModeBase>(GetWorld()->GetAuthGameMode());
+		if (MainGameModeBase != nullptr)
+		{
+			MainGameModeBase->PlayerDie();
+		}
+	}
+
+	return Health;
 }

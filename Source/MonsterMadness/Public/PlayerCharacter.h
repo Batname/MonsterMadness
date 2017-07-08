@@ -95,6 +95,14 @@ protected:
 	UPROPERTY(EditAnywhere, Category = Stats)
 	int32 MinSwordDamageRate = 3.f;
 
+	/** The health of the character */
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = PlayerHealth)
+	float Health;
+
+	/** The max health  of the enemy */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PlayerHealth)
+	float MaxHealth = 500.f;
+
 private:
 	/** Set Movement Input */
 	void MovementInput(float Value, EAxis::Type Axis);
@@ -112,4 +120,22 @@ private:
 
 	UFUNCTION()
 	void OnBeginSwordOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
+	/** Handle player Die status */
+	UFUNCTION()
+	void Die();
+
+public:
+
+	UFUNCTION(BlueprintPure, Category = PlayerHealth)
+	float GetHealth() const { return Health; }
+
+	UFUNCTION(BlueprintPure, Category = PlayerHealth)
+	float GetMaxHealth() const { return MaxHealth; }
+
+	UFUNCTION()
+	float SimpleDamage(float Damage);
+
+	UPROPERTY()
+	bool bIsAlive = true;
 };

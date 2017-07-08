@@ -3,6 +3,8 @@
 
 #include "PlayerHUD.h"
 #include "LifeLevelWidget.h"
+#include "RestartGameWidget.h"
+#include "Kismet/GameplayStatics.h"
 
 void APlayerHUD::BeginPlay()
 {
@@ -20,4 +22,14 @@ void APlayerHUD::BeginPlay()
 void APlayerHUD::DrawHUD()
 {
 	Super::DrawHUD();
+}
+
+void APlayerHUD::AddRestartWidget()
+{
+	if (BP_RestartGameWidget != nullptr)
+	{
+		// Create and add to view port
+		RestartGameWidget = CreateWidget<URestartGameWidget>(this->GetOwningPlayerController(), BP_RestartGameWidget);
+		RestartGameWidget->AddToViewport();
+	}
 }

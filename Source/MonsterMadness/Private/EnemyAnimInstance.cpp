@@ -2,6 +2,7 @@
 
 
 #include "EnemyAnimInstance.h"
+#include "EnemyCharacter.h"
 #include "GameFramework/PawnMovementComponent.h"
 
 
@@ -15,12 +16,34 @@ void UEnemyAnimInstance::UpdateAnimationProperties()
 		bIsFalling = Pawn->GetMovementComponent()->IsFalling();
 
 		MovementSpeed = Pawn->GetVelocity().Size();
+
+		// Try to cast our enemy
+		AEnemyCharacter* EnemyCharacter = Cast<AEnemyCharacter>(Pawn);
+
+		if (EnemyCharacter)
+		{
+			bIsAttack = EnemyCharacter->GetIsAttack();
+			if (bIsAttack)
+			{
+				PlayAttack();
+			}
+		}
 	}
 }
 
-
-// TODO implement AI Enemy Attack 
-void UEnemyAnimInstance::Attack()
+void UEnemyAnimInstance::PlayAttack()
 {
-	UE_LOG(LogTemp, Warning, TEXT("UEnemyAnimInstance::Attack"));
+	if (AttackMontage != nullptr)
+	{
+		FName CurrentSection = Montage_GetCurrentSection(AttackMontage);
+
+		if (CurrentSection.IsNone())
+		{
+			Montage_Play(AttackMontage);
+		}
+		else if (CurrentSection.IsEqual("EnemyAttackStart") && bIsAttack)
+		{
+			Montage_JumpToSection(FName("EnemyAttackMain"), AttackMontage);
+		}
+	}
 }

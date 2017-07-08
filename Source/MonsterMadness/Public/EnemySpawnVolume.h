@@ -66,5 +66,7 @@ private:
 
 	/** The current spawned enemy */
 	uint8 CurrentSpawn = 0;
+
+	class AMainGameModeBase* MainGameModeBase;
 	
 };

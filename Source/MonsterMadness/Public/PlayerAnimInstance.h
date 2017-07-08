@@ -39,6 +39,4 @@ protected:
 public:
 	void PlaySlash();
 
-private:
-	bool bIsPlayingSlash = false;
 };
