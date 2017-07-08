@@ -3,8 +3,10 @@
 
 #include "PlayerCharacter.h"
 #include "Bomb.h"
+#include "EnemyCharacter.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
+#include "Components/SphereComponent.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
@@ -36,6 +38,14 @@ APlayerCharacter::APlayerCharacter()
 	GetCharacterMovement()->RotationRate = FRotator(0.f, 540.f, 0.f); // at rotation rate
 	GetCharacterMovement()->JumpZVelocity = 600.f;
 	GetCharacterMovement()->AirControl = 0.2f;
+
+	// Sword Collision Sphere
+	SwordCollisionComp = CreateDefaultSubobject<USphereComponent>(TEXT("SwordCollisionComp"));
+	SwordCollisionComp->SetupAttachment(GetMesh(), FName("RightShoulder"));
+	SwordCollisionComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	// SwordCollisionComp->SetupAttachment(RootComponent);
+	SwordCollisionComp->OnComponentBeginOverlap.AddDynamic(this, &APlayerCharacter::OnBeginSwordOverlap);
+
 
 	// Camera Boom
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
@@ -76,6 +86,8 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAction("QuitGame", IE_Pressed, this, &APlayerCharacter::EscapeGameInput);
 	PlayerInputComponent->BindAction("SpawnBomb", IE_Pressed, this, &APlayerCharacter::AttempToSpawnBomb);
 
+	PlayerInputComponent->BindAction("Slash", IE_Pressed, this, &APlayerCharacter::SlashStart);
+	PlayerInputComponent->BindAction("Slash", IE_Released, this, &APlayerCharacter::SlashEnd);
 
 	PlayerInputComponent->BindAxis("MoveForward", this, &APlayerCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &APlayerCharacter::MoveRight);
@@ -132,5 +144,29 @@ void APlayerCharacter::AttempToSpawnBomb()
 
 		// Spawn the bomb
 		GetWorld()->SpawnActor<ABomb>(BP_Bomb, GetActorLocation() + GetActorForwardVector() * 200, GetActorRotation(), SpawnParameters);
+	}
+}
+
+void APlayerCharacter::SlashStart()
+{
+	bIsSlashing = true;
+	SwordCollisionComp->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+}
+
+void APlayerCharacter::SlashEnd()
+{
+	bIsSlashing = false;
+	SwordCollisionComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+}
+
+void APlayerCharacter::OnBeginSwordOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	if ((OtherActor != NULL) && (OtherActor != this) && bIsSlashing)
+	{
+		if (OtherActor->IsA<AEnemyCharacter>())
+		{
+			float SwordDamageRate = FMath::FRandRange(MinSwordDamageRate, MaxSwordDamageRate);
+			Cast<AEnemyCharacter>(OtherActor)->SimpleDamage(SwordDamageRate);
+		}
 	}
 }

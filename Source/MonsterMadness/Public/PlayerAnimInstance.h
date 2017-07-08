@@ -24,7 +24,21 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	float MovementSpeed;
 
+	/** Holds the current status of slashing */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	bool bIsSlashing;
+
+	/** The attack montage */
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	UAnimMontage* SlashMontage;
+
 	/** Updates the above parameters */
 	UFUNCTION(BlueprintCallable, Category = UpdateAnimationProperties)
 	void UpdateAnimationProperties();
+
+public:
+	void PlaySlash();
+
+private:
+	bool bIsPlayingSlash = false;
 };

@@ -65,10 +65,8 @@ void AEnemyCharacter::UpdateEnemyLifeText()
 	EnemyLifeText->SetText(FText::FromString(NewText));
 }
 
-float AEnemyCharacter::TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
+float AEnemyCharacter::SimpleDamage(float Damage)
 {
-	Super::TakeDamage(Damage, DamageEvent, EventInstigator, DamageCauser);
-
 	Health -= Damage;
 	UpdateEnemyLifeText();
 
@@ -78,6 +76,13 @@ float AEnemyCharacter::TakeDamage(float Damage, struct FDamageEvent const& Damag
 	}
 
 	return Health;
+}
+
+float AEnemyCharacter::TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
+{
+	Super::TakeDamage(Damage, DamageEvent, EventInstigator, DamageCauser);
+
+	return SimpleDamage(Damage);
 }
 
 void AEnemyCharacter::Die()

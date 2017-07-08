@@ -23,6 +23,10 @@ protected:
 	UPROPERTY(EditAnywhere, Category = BombProps)
 	TSubclassOf<class ABomb> BP_Bomb;
 
+	/** Sword Collision Sphere */
+	UPROPERTY(EditAnywhere, Category = Slash)
+	class UShapeComponent* SwordCollisionComp;
+
 
 public:	
 	// Called every frame
@@ -50,12 +54,21 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
 	float BaseLookUpRate;
 
+	UFUNCTION(BlueprintCallable)
+	bool GetIsSlashing() { return bIsSlashing; }
+
 protected:
 	/** Called forward/backward input */
 	void MoveForward(float Value);
 
 	/** Called slide to slide input */
 	void MoveRight(float Value);
+
+	/** Called when left mouse pressed */
+	void SlashStart();
+
+	/** Called when left mouse released */
+	void SlashEnd();
 
 	/**
 	 * Called via input to turn at a given time
@@ -74,6 +87,14 @@ protected:
 	UPROPERTY(EditAnywhere, Category = Stats)
 	int32 MaxBombCount = 30;
 
+	/** Max Rate of sword damage */
+	UPROPERTY(EditAnywhere, Category = Stats)
+	int32 MaxSwordDamageRate = 15.f;
+
+	/** Min Rate of sword damage */
+	UPROPERTY(EditAnywhere, Category = Stats)
+	int32 MinSwordDamageRate = 3.f;
+
 private:
 	/** Set Movement Input */
 	void MovementInput(float Value, EAxis::Type Axis);
@@ -84,4 +105,11 @@ private:
 
 	/** If any bombs left */
 	bool HasBombs() { return BombCount > 0; }
+
+	/** Is now Slashing */
+	UPROPERTY()
+	bool bIsSlashing = false;
+
+	UFUNCTION()
+	void OnBeginSwordOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 };
