@@ -4,6 +4,7 @@
 #include "EnemyCharacter.h"
 #include "PlayerCharacter.h"
 #include "EnemyAIController.h"
+#include "MainGameModeBase.h"
 #include "Perception/PawnSensingComponent.h"
 #include "Components/TextRenderComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -57,6 +58,9 @@ void AEnemyCharacter::BeginPlay()
 
 	// Init health
 	InitHealth();
+
+	// Add Game mode reference
+	MainGameModeBase = Cast<AMainGameModeBase>(GetWorld()->GetAuthGameMode());
 }
 
 void AEnemyCharacter::Tick(float DeltaSeconds)
@@ -139,6 +143,12 @@ void AEnemyCharacter::Die()
 	TimerDel.BindLambda([&]()
 	{
 		Destroy();
+
+		// Remove reference from array
+		if (MainGameModeBase != nullptr)
+		{
+			MainGameModeBase->GetEnemyCharacters().RemoveSingle(this);
+		}
 	});
 
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDel, 1.5f, false);
