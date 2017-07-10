@@ -6830,6 +6830,7 @@ SOURCES += \
 	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Private/InventoryWidget.cpp" \
 	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Private/Pickup.cpp" \
 	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Private/Trader.cpp" \
+	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Private/TraderComponent.cpp" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/MonsterMadness.cpp" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/Private/Bomb.cpp" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/Private/EnemyAIController.cpp" \

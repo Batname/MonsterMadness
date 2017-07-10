@@ -3,3 +3,4 @@
 #include "/media/bat/SecondSSD/Projects/Unreal/MonsterMadness/Plugins/Inventory/Source/Inventory/Private/InventoryWidget.cpp"
 #include "/media/bat/SecondSSD/Projects/Unreal/MonsterMadness/Plugins/Inventory/Source/Inventory/Private/Pickup.cpp"
 #include "/media/bat/SecondSSD/Projects/Unreal/MonsterMadness/Plugins/Inventory/Source/Inventory/Private/Trader.cpp"
+#include "/media/bat/SecondSSD/Projects/Unreal/MonsterMadness/Plugins/Inventory/Source/Inventory/Private/TraderComponent.cpp"

@@ -8844,6 +8844,7 @@ HEADERS += \
 	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Public/InventoryWidget.h" \
 	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Public/Pickup.h" \
 	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Public/Trader.h" \
+	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Public/TraderComponent.h" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/MonsterMadness.h" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/Public/Bomb.h" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/Public/EnemyAIController.h" \

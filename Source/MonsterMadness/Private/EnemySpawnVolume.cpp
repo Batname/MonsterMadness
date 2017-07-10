@@ -8,6 +8,7 @@
 #include "Components/BoxComponent.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Kismet/GameplayStatics.h"
+#include "UObject/ConstructorHelpers.h"
 
 
 // Sets default values
@@ -16,6 +17,17 @@ AEnemySpawnVolume::AEnemySpawnVolume()
 	// Create box component
 	WhereToSpawn = CreateDefaultSubobject<UBoxComponent>(TEXT("WhereToSpawn"));
 	RootComponent = WhereToSpawn;
+
+	// Generate overlap event
+	WhereToSpawn->OnComponentBeginOverlap.AddDynamic(this, &AEnemySpawnVolume::OnOverlapBegin);
+	WhereToSpawn->OnComponentEndOverlap.AddDynamic(this, &AEnemySpawnVolume::OnOverlapEnd);
+	static FName HandCollsionProfileName(TEXT("OverlapAll"));
+	WhereToSpawn->SetCollisionProfileName(HandCollsionProfileName);
+	WhereToSpawn->SetSimulatePhysics(false);
+	WhereToSpawn->bGenerateOverlapEvents = true;
+	WhereToSpawn->bMultiBodyOverlap = true;
+	WhereToSpawn->bTraceComplexOnMove = true;
+
 
 	// Set spawn delay
 	SpawnDelayRangeLow = 1.f;
@@ -109,4 +121,36 @@ void AEnemySpawnVolume::SpawnEnemy()
 			CurrentSpawn++;
 		}
 	}
+}
+
+void AEnemySpawnVolume::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+
+	APlayerCharacter* PlayerCharacter = Cast<APlayerCharacter>(OtherActor);
+
+	// Player start overlap 
+	if ( (PlayerCharacter != nullptr ) && ( OtherComp != nullptr ) && !bIsPlayerInside)  
+	{
+		if ((long)PlayerCharacter->GetCapsuleComponent() == (long)OtherComp)
+		{
+			bIsPlayerInside = true;
+			SetSpawningActive(bIsPlayerInside);
+		}
+
+	}  
+}
+
+void AEnemySpawnVolume::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+	APlayerCharacter* PlayerCharacter = Cast<APlayerCharacter>(OtherActor);
+
+	// Player start overlap 
+	if ( (PlayerCharacter != nullptr ) && bIsPlayerInside)  
+	{
+		if ((long)PlayerCharacter->GetCapsuleComponent() == (long)OtherComp)
+		{
+			bIsPlayerInside = false;
+			SetSpawningActive(bIsPlayerInside);
+		}
+	}  
 }

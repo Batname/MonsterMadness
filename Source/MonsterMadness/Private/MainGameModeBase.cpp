@@ -22,11 +22,6 @@ void AMainGameModeBase::BeginPlay()
 	for (auto Actor : FoundActors)
 	{
 		EnemySpawnVolume = Cast<AEnemySpawnVolume>(Actor);
-
-		if (EnemySpawnVolume)
-		{
-			EnemySpawnVolume->SetSpawningActive(true);
-		}
 	}
 }
 

@@ -14,3 +14,6 @@
 #ifndef INVENTORY_Trader_generated_h
 	#include "Public/Trader.h"
 #endif
+#ifndef INVENTORY_TraderComponent_generated_h
+	#include "Public/TraderComponent.h"
+#endif
