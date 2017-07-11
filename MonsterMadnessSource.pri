@@ -6826,6 +6826,12 @@ SOURCES += \
 	"$$unrealRootPath/Engine/Plugins/Tests/RuntimeTests/Source/RuntimeTests/Private/RuntimeTests.cpp" \
 	"$$unrealRootPath/Engine/Plugins/Tests/RuntimeTests/Source/RuntimeTests/Private/Slate/RichTextMarkupProcessingTest.cpp" \
 	"$$unrealRootPath/Engine/Plugins/Tests/ScreenshotTools/Source/ScreenshotTools/Private/ScreenshotTools.cpp" \
+	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Private/Inventory.cpp" \
+	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Private/InventorySlotWidget.cpp" \
+	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Private/InventoryWidget.cpp" \
+	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Private/MyActor.cpp" \
+	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Private/Pickup.cpp" \
+	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Private/TraderCharacter.cpp" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/MonsterMadness.cpp" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/Private/Bomb.cpp" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/Private/EnemyAIController.cpp" \

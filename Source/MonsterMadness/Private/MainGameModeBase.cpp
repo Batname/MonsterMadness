@@ -22,11 +22,6 @@ void AMainGameModeBase::BeginPlay()
 	for (auto Actor : FoundActors)
 	{
 		EnemySpawnVolume = Cast<AEnemySpawnVolume>(Actor);
-
-		if (EnemySpawnVolume)
-		{
-			EnemySpawnVolume->SetSpawningActive(true);
-		}
 	}
 }
 
@@ -69,7 +64,12 @@ void AMainGameModeBase::PlayerDie()
 	// Stop all AI movement
 	for (auto EnemyCharacter : EnemyCharacters)
 	{
-		// Do nothig for now
+		// Stop logic of AI
+		AEnemyAIController* EnemyAIController = Cast<AEnemyAIController>(EnemyCharacter->GetController());
+		if (EnemyAIController != nullptr)
+		{
+			EnemyAIController->StopLogic();
+		}
 	}
 
 

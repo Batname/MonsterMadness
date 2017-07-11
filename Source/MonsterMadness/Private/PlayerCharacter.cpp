@@ -5,6 +5,11 @@
 #include "Bomb.h"
 #include "EnemyCharacter.h"
 #include "MainGameModeBase.h"
+#include "MainPlayerController.h"
+#include "PlayerHUD.h"
+
+#include "Pickup.h"
+
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
 #include "Components/SphereComponent.h"
@@ -12,14 +17,13 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
-
-
+#include "Engine/Texture2D.h"
 
 // Sets default values
 APlayerCharacter::APlayerCharacter()
 {
 	// Do not call Tick function for now
-	PrimaryActorTick.bCanEverTick = false;
+	PrimaryActorTick.bCanEverTick = true;
 
 	// Set Player to be controlled by lowest number player
 	AutoPossessPlayer = EAutoReceiveInput::Player0;
@@ -59,25 +63,36 @@ APlayerCharacter::APlayerCharacter()
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
 	FollowCamera->bUsePawnControlRotation = false;
-
 }
 
 // Called when the game starts or when spawned
 void APlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	MainPlayerController = Cast<AMainPlayerController>(GetController());
+	PlayerHUD = Cast<APlayerHUD>(GetWorld()->GetFirstPlayerController()->GetHUD());
+
 	// Init bomb count
 	BombCount = MaxBombCount;
 
 	// Set Init health
 	Health = MaxHealth;
+
+	// Init last Pickup
+	LastItemSeen = nullptr;
+
+	// Init inventory array
+	Inventory.SetNum(MAX_INVENTORY_ITEMS);
 }
 
 // Disabled for now
 void APlayerCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	// Raycast every frame;
+	Raycast();
 }
 
 // Called to bind functionality to input
@@ -90,9 +105,28 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 
 	PlayerInputComponent->BindAction("QuitGame", IE_Pressed, this, &APlayerCharacter::EscapeGameInput);
 	PlayerInputComponent->BindAction("SpawnBomb", IE_Pressed, this, &APlayerCharacter::AttempToSpawnBomb);
+	PlayerInputComponent->BindAction("DropEquippedItem", IE_Pressed, this, &APlayerCharacter::DropEquippedItem);
 
 	PlayerInputComponent->BindAction("Slash", IE_Pressed, this, &APlayerCharacter::SlashStart);
 	PlayerInputComponent->BindAction("Slash", IE_Released, this, &APlayerCharacter::SlashEnd);
+
+
+	PlayerInputComponent->BindAction("Pickup", IE_Pressed, this, &APlayerCharacter::PickupItem);
+
+	// Handle inventory input
+	{
+		FInputActionBinding InventoryBinding;
+
+		// We need this bind to execute pause state
+		InventoryBinding.bExecuteWhenPaused = true;
+		InventoryBinding.ActionDelegate.BindDelegate(this, TEXT("HandleInventoryInput"));
+		InventoryBinding.ActionName = TEXT("Inventory");
+		InventoryBinding.KeyEvent = IE_Pressed;
+
+		// Binding Inventory action
+		PlayerInputComponent->AddActionBinding(InventoryBinding);
+
+	}
 
 	PlayerInputComponent->BindAxis("MoveForward", this, &APlayerCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &APlayerCharacter::MoveRight);
@@ -190,4 +224,129 @@ float APlayerCharacter::SimpleDamage(float Damage)
 	}
 
 	return Health;
+}
+
+// ------------ Inventory system
+// ---------------------------
+void APlayerCharacter::Raycast()
+{
+	// Calculating start and end location
+	FVector StartLocation = GetCapsuleComponent()->GetComponentLocation();
+	FVector EndLocation = StartLocation + (GetCapsuleComponent()->GetForwardVector() * RaycastRange);
+
+
+	FHitResult RaycastHit;
+
+	// Raycast should ignore the character
+	FCollisionQueryParams CollisionQueryParams;
+	CollisionQueryParams.AddIgnoredActor(this);
+
+	// Raycast
+	GetWorld()->LineTraceSingleByChannel(RaycastHit, StartLocation, EndLocation, ECollisionChannel::ECC_WorldDynamic, CollisionQueryParams);
+
+	APickup* Pickup = Cast<APickup>(RaycastHit.GetActor());
+
+	if (LastItemSeen && LastItemSeen != Pickup)
+	{
+		// If character seen a different pickup then disable the glowing effect on the previous seen item
+		LastItemSeen->SetGlowEffect(false);
+	}
+
+	if (Pickup)
+	{
+		// Enable the glow effect on the current item
+		LastItemSeen = Pickup;
+		Pickup->SetGlowEffect(true);
+	}
+	else
+	{
+		LastItemSeen = nullptr;
+	}
+}
+
+void APlayerCharacter::PickupItem()
+{
+	if (LastItemSeen)
+	{
+		// Find first available slot
+		int32 AvailableSlot = Inventory.Find(nullptr);
+
+		if (AvailableSlot != INDEX_NONE)
+		{
+			// Add to first valid slot
+			Inventory[AvailableSlot] = LastItemSeen;
+
+			// Destroy item from the game
+			LastItemSeen->Destroy();
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("You can not carry more then %d items"), MAX_INVENTORY_ITEMS);
+		}
+	}
+}
+
+void APlayerCharacter::HandleInventoryInput()
+{
+	if (PlayerHUD)
+	{
+		PlayerHUD->HandleInventoryInput();
+	}
+}
+
+void APlayerCharacter::SetEquippedItem(UTexture2D* Texture)
+{
+	if (Texture)
+	{
+		// For this scenarion we make the assumption that
+		// Every pickup has a unique texture.
+		// So, in order to set the equipped item we just check every item 
+		// inside our Inventory. Once we found an item that has the same image as the
+		// Texture image we're passing as a parametr we mark that itemas CurrentlyEquipped
+		for (auto It = Inventory.CreateIterator(); It; It++)
+		{
+			if ((*It) && (*It)->GetPickupTexture() && (*It)->GetPickupTexture()->HasSameSourceArt(Texture) )
+			{
+				CurrentlyEquippedItem = *It;
+				UE_LOG(LogTemp, Warning, TEXT("I've set a new equipped item: %s"), *CurrentlyEquippedItem->GetName());
+				break;
+			}
+		}	
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Player has clicked an empty inventory slot"));
+	}
+}
+
+void APlayerCharacter::DropEquippedItem()
+{
+	if (CurrentlyEquippedItem != nullptr)
+	{
+		int32 IndexOfItem;
+		if (Inventory.Find(CurrentlyEquippedItem, IndexOfItem))
+		{
+			// The location for drop
+			FVector DropLocation = GetActorLocation() + (GetActorForwardVector() * 200);
+
+			// Making a transform with default rotation and scale. just setting the location
+			// that was calculated abouve
+			FTransform Transform;
+			Transform.SetLocation(DropLocation);
+
+			// Default actor spawn parameters
+			FActorSpawnParameters SpawnParameters;
+			SpawnParameters.Instigator = this;
+			SpawnParameters.Owner = GetController();
+
+			// Spawn the pickup
+			APickup* PickupToSpawn = GetWorld()->SpawnActor<APickup>(CurrentlyEquippedItem->GetClass(), Transform, SpawnParameters);
+
+			if (PickupToSpawn != nullptr)
+			{
+				// Unreferenced intem we're jusp placed
+				Inventory[IndexOfItem] = nullptr;
+			}	
+		}
+	}
 }

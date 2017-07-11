@@ -68,5 +68,15 @@ private:
 	uint8 CurrentSpawn = 0;
 
 	class AMainGameModeBase* MainGameModeBase;
-	
+
+	/** Begin overlap event */
+	UFUNCTION()
+	void OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
+	/** End Ovelrap event */
+	UFUNCTION()
+	void OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+
+	/** Additon overlap player check variable */
+	bool bIsPlayerInside = false;
 };

@@ -107,4 +107,8 @@ private:
 	void OnBeginAttackSphereOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
 	class APlayerCharacter* PlayerCharacter;
+
+	/** Game mode reference */
+	UPROPERTY()
+	class AMainGameModeBase* MainGameModeBase = nullptr;
 };

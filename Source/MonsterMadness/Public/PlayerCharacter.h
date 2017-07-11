@@ -6,6 +6,8 @@
 #include "GameFramework/Character.h"
 #include "PlayerCharacter.generated.h"
 
+#define MAX_INVENTORY_ITEMS 4
+
 UCLASS(config=Game)
 class MONSTERMADNESS_API APlayerCharacter : public ACharacter
 {
@@ -138,4 +140,59 @@ public:
 
 	UPROPERTY()
 	bool bIsAlive = true;
+
+private:
+	/** Hold Contoller reference */
+	class AMainPlayerController* MainPlayerController;
+
+	/** Hold HUD reference */
+	class APlayerHUD* PlayerHUD;
+
+// ------------ Inventory system
+// ---------------------------
+
+private:
+	/** Raycast in front of the character to find usable items */
+	UFUNCTION()
+	void Raycast();
+
+	/** Reference to the last seen pickup Item. */
+	class APickup* LastItemSeen;
+
+
+protected:
+	/* The Renge of the raycast */
+	UPROPERTY(EditAnywhere)
+	float RaycastRange = 250.f;
+
+	/** Handle pickup input */
+	UFUNCTION()
+	void PickupItem();
+
+	/** Player inventory */
+	UPROPERTY(VisibleAnywhere)
+	TArray<class APickup*> Inventory;
+
+	/** handles the inventory inpuyt from the user */
+	UFUNCTION()
+	void HandleInventoryInput();
+
+public:
+	TArray<class APickup*> GetInventory() { return Inventory; }
+
+
+private:
+	/** Reference to the currently quipped item */
+	class APickup* CurrentlyEquippedItem;
+
+
+public:
+	/** Set a new equipeed item based on given texture */
+	UFUNCTION(BlueprintCallable, Category = InventoryUI)
+	void SetEquippedItem(class UTexture2D* Texture);
+
+private:
+	/** Drops the curently Equipped item */
+	UFUNCTION()
+	void DropEquippedItem();
 };

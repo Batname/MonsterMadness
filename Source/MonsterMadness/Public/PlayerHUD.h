@@ -20,6 +20,9 @@ private:
 
 	/** RestartGameWidget cpp class reference */
 	class URestartGameWidget* RestartGameWidget;
+
+	/** Crosshair asset pointer */
+	class UTexture2D* CrosshairTex;
 	
 protected:
 	/** LifeLevel blueprint reference */
@@ -31,6 +34,9 @@ protected:
 	TSubclassOf<class URestartGameWidget> BP_RestartGameWidget;
 
 public:
+	APlayerHUD();
+
+
 	virtual void BeginPlay() override;
 	virtual void DrawHUD() override;
 
@@ -38,4 +44,32 @@ public:
 	/** Draw restart widget */
 	UFUNCTION()
 	void AddRestartWidget();
+
+private:
+	/** Hold ref to character */
+	class APlayerCharacter* PlayerCharacter;
+
+
+	/** Hold ref to Controller */
+	class AMainPlayerController* MainPlayerController;
+
+// ------------ Inventory system
+// ---------------------------
+
+private:
+	/** reference to widget */
+	class UInventoryWidget* InventoryWidget;
+
+	/** True if inventory is currently open - false otherwise */
+	bool bIsInventoryOpen;
+
+protected:
+	/** Inventorywidget blueprint reference */
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<UInventoryWidget> BP_InventoryWidget;
+
+public:
+
+	/** Open or close the inventory */
+	void HandleInventoryInput();
 };

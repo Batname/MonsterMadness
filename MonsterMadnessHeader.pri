@@ -8839,6 +8839,13 @@ HEADERS += \
 	"$$unrealRootPath/Engine/Plugins/Tests/FunctionalTestingEditor/Source/Public/EditorAutomationModule.h" \
 	"$$unrealRootPath/Engine/Plugins/Tests/RuntimeTests/Source/RuntimeTests/Public/RuntimeTests.h" \
 	"$$unrealRootPath/Engine/Plugins/Tests/ScreenshotTools/Source/ScreenshotTools/Public/ScreenshotTools.h" \
+	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Public/Inventory.h" \
+	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Public/InventoryPrivatePCH.h" \
+	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Public/InventorySlotWidget.h" \
+	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Public/InventoryWidget.h" \
+	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Public/MyActor.h" \
+	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Public/Pickup.h" \
+	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Public/TraderCharacter.h" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/MonsterMadness.h" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/Public/Bomb.h" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/Public/EnemyAIController.h" \
