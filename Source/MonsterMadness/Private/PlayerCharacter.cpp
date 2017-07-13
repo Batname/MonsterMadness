@@ -8,7 +8,7 @@
 #include "MainPlayerController.h"
 #include "PlayerHUD.h"
 
-#include "Pickup.h"
+#include "BI_Pickup.h"
 
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
@@ -244,7 +244,7 @@ void APlayerCharacter::Raycast()
 	// Raycast
 	GetWorld()->LineTraceSingleByChannel(RaycastHit, StartLocation, EndLocation, ECollisionChannel::ECC_WorldDynamic, CollisionQueryParams);
 
-	APickup* Pickup = Cast<APickup>(RaycastHit.GetActor());
+	ABI_Pickup* Pickup = Cast<ABI_Pickup>(RaycastHit.GetActor());
 
 	if (LastItemSeen && LastItemSeen != Pickup)
 	{
@@ -340,7 +340,7 @@ void APlayerCharacter::DropEquippedItem()
 			SpawnParameters.Owner = GetController();
 
 			// Spawn the pickup
-			APickup* PickupToSpawn = GetWorld()->SpawnActor<APickup>(CurrentlyEquippedItem->GetClass(), Transform, SpawnParameters);
+			ABI_Pickup* PickupToSpawn = GetWorld()->SpawnActor<ABI_Pickup>(CurrentlyEquippedItem->GetClass(), Transform, SpawnParameters);
 
 			if (PickupToSpawn != nullptr)
 			{

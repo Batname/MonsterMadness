@@ -8839,6 +8839,10 @@ HEADERS += \
 	"$$unrealRootPath/Engine/Plugins/Tests/FunctionalTestingEditor/Source/Public/EditorAutomationModule.h" \
 	"$$unrealRootPath/Engine/Plugins/Tests/RuntimeTests/Source/RuntimeTests/Public/RuntimeTests.h" \
 	"$$unrealRootPath/Engine/Plugins/Tests/ScreenshotTools/Source/ScreenshotTools/Public/ScreenshotTools.h" \
+	"$$MonsterMadnessRootPath/Plugins/BatInventory/Source/BatInventory/Public/BI_Pickup.h" \
+	"$$MonsterMadnessRootPath/Plugins/BatInventory/Source/BatInventory/Public/BI_SlotUserWidget.h" \
+	"$$MonsterMadnessRootPath/Plugins/BatInventory/Source/BatInventory/Public/BI_UserWidget.h" \
+	"$$MonsterMadnessRootPath/Plugins/BatInventory/Source/BatInventory/Public/BatInventory.h" \
 	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Public/Inventory.h" \
 	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Public/InventoryPrivatePCH.h" \
 	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Public/InventorySlotWidget.h" \

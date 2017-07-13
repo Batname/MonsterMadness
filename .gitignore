@@ -81,5 +81,5 @@ CMakeLists.txt
 Makefile
 
 .kdev4/
-Plugins/Inventory/Binaries/*
-Plugins/Inventory/Intermediate/*
+Plugins/BatInventory/Binaries/*
+Plugins/BatInventory/Intermediate/*

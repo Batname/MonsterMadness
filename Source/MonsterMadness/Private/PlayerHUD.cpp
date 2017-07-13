@@ -8,7 +8,7 @@
 #include "MainPlayerController.h"
 
 // Plagins
-#include "InventoryWidget.h"
+#include "BI_UserWidget.h"
 
 // Engine
 #include "Engine/Canvas.h"
@@ -42,9 +42,9 @@ void APlayerHUD::BeginPlay()
 	}
 
 	// Init Inventory widget
-	if (BP_InventoryWidget != nullptr)
+	if (BP_BI_UserWidget != nullptr)
 	{
-		InventoryWidget = CreateWidget<UInventoryWidget>(MainPlayerController, BP_InventoryWidget);
+		BI_UserWidget = CreateWidget<UBI_UserWidget>(MainPlayerController, BP_BI_UserWidget);
 	}
 
 	bIsInventoryOpen = false;
@@ -82,7 +82,7 @@ void APlayerHUD::AddRestartWidget()
 void APlayerHUD::HandleInventoryInput()
 {
 
-	if (!InventoryWidget)
+	if (!BI_UserWidget)
 	{
 		return;
 	}
@@ -93,7 +93,7 @@ void APlayerHUD::HandleInventoryInput()
 		bIsInventoryOpen = false;
 
 		// Remove from viewpost
-		InventoryWidget->RemoveFromViewport();
+		BI_UserWidget->RemoveFromViewport();
 
 		// Hide the cursor of our game
 		MainPlayerController->bShowMouseCursor = false;
@@ -113,10 +113,11 @@ void APlayerHUD::HandleInventoryInput()
 		if (PlayerCharacter != nullptr)
 		{
 			// re-populate Items Array
-			InventoryWidget->ItemsArray = PlayerCharacter->GetInventory();
+			BI_UserWidget->ItemsArray = PlayerCharacter->GetInventory();
 		}
 
-		InventoryWidget->Show();
+		UE_LOG(LogTemp, Warning, TEXT("TRY TO SHOW"));
+		BI_UserWidget->Show();
 
 
 		// Show the cursor of our game

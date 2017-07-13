@@ -58,15 +58,15 @@ private:
 
 private:
 	/** reference to widget */
-	class UInventoryWidget* InventoryWidget;
+	class UBI_UserWidget* BI_UserWidget;
 
 	/** True if inventory is currently open - false otherwise */
 	bool bIsInventoryOpen;
 
 protected:
-	/** Inventorywidget blueprint reference */
+	/** BI_UserWidget blueprint reference */
 	UPROPERTY(EditDefaultsOnly)
-	TSubclassOf<UInventoryWidget> BP_InventoryWidget;
+	TSubclassOf<UBI_UserWidget> BP_BI_UserWidget;
 
 public:
 

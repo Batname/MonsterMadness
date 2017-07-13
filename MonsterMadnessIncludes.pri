@@ -2235,6 +2235,12 @@ INCLUDEPATH += \
 	/home/bat/Apps/UnrealEngine/Engine/Intermediate/Build/Linux/B4D820EA/UnrealWatchdog/Inc/Json \
 	/home/bat/Apps/UnrealEngine/Engine/Intermediate/Build/Linux/B4D820EA/BootstrapPackagedGame/Inc/BootstrapPackagedGame \
 	/home/bat/Apps/UnrealEngine/Engine/Source/Programs/Windows/BootstrapPackagedGame \
+	Plugins/BatInventory/Source/BatInventory/Private \
+	/home/bat/Apps/UnrealEngine/Engine/Source/BatInventory/Public \
+	Plugins/BatInventory/Source \
+	Plugins/BatInventory/Source/BatInventory/Public \
+	Plugins/BatInventory/Intermediate/Build/Linux/B4D820EA/UE4Editor/Inc/BatInventory \
+	Plugins/BatInventory/Source/BatInventory \
 	Plugins/Inventory/Source/Inventory/Private \
 	/home/bat/Apps/UnrealEngine/Engine/Source/Inventory/Public \
 	Plugins/Inventory/Source \

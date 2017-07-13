@@ -157,7 +157,7 @@ private:
 	void Raycast();
 
 	/** Reference to the last seen pickup Item. */
-	class APickup* LastItemSeen;
+	class ABI_Pickup* LastItemSeen;
 
 
 protected:
@@ -171,19 +171,19 @@ protected:
 
 	/** Player inventory */
 	UPROPERTY(VisibleAnywhere)
-	TArray<class APickup*> Inventory;
+	TArray<class ABI_Pickup*> Inventory;
 
 	/** handles the inventory inpuyt from the user */
 	UFUNCTION()
 	void HandleInventoryInput();
 
 public:
-	TArray<class APickup*> GetInventory() { return Inventory; }
+	TArray<class ABI_Pickup*> GetInventory() { return Inventory; }
 
 
 private:
 	/** Reference to the currently quipped item */
-	class APickup* CurrentlyEquippedItem;
+	class ABI_Pickup* CurrentlyEquippedItem;
 
 
 public:

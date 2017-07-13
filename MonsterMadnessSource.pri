@@ -6826,6 +6826,10 @@ SOURCES += \
 	"$$unrealRootPath/Engine/Plugins/Tests/RuntimeTests/Source/RuntimeTests/Private/RuntimeTests.cpp" \
 	"$$unrealRootPath/Engine/Plugins/Tests/RuntimeTests/Source/RuntimeTests/Private/Slate/RichTextMarkupProcessingTest.cpp" \
 	"$$unrealRootPath/Engine/Plugins/Tests/ScreenshotTools/Source/ScreenshotTools/Private/ScreenshotTools.cpp" \
+	"$$MonsterMadnessRootPath/Plugins/BatInventory/Source/BatInventory/Private/BI_Pickup.cpp" \
+	"$$MonsterMadnessRootPath/Plugins/BatInventory/Source/BatInventory/Private/BI_SlotUserWidget.cpp" \
+	"$$MonsterMadnessRootPath/Plugins/BatInventory/Source/BatInventory/Private/BI_UserWidget.cpp" \
+	"$$MonsterMadnessRootPath/Plugins/BatInventory/Source/BatInventory/Private/BatInventory.cpp" \
 	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Private/Inventory.cpp" \
 	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Private/InventorySlotWidget.cpp" \
 	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Private/InventoryWidget.cpp" \
