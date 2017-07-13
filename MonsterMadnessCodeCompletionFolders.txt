@@ -3919,12 +3919,6 @@
 /home/bat/Apps/UnrealEngine/Engine/Source/Runtime/MovieSceneTracks/Public/Tracks
 /home/bat/Apps/UnrealEngine/Engine/Intermediate/Build/Linux/B4D820EA/UE4Editor/Inc/MovieSceneTracks
 /home/bat/Apps/UnrealEngine/Engine/Source/Runtime/MovieSceneTracks
-/media/bat/SecondSSD/Projects/Unreal/MonsterMadness/Plugins/Inventory/Source/Inventory/Private
-/home/bat/Apps/UnrealEngine/Engine/Source/Inventory/Public
-/media/bat/SecondSSD/Projects/Unreal/MonsterMadness/Plugins/Inventory/Source
-/media/bat/SecondSSD/Projects/Unreal/MonsterMadness/Plugins/Inventory/Source/Inventory/Public
-/media/bat/SecondSSD/Projects/Unreal/MonsterMadness/Plugins/Inventory/Intermediate/Build/Linux/B4D820EA/UE4Editor/Inc/Inventory
-/media/bat/SecondSSD/Projects/Unreal/MonsterMadness/Plugins/Inventory/Source/Inventory
 /media/bat/SecondSSD/Projects/Unreal/MonsterMadness/Source/MonsterMadness/Private
 /media/bat/SecondSSD/Projects/Unreal/MonsterMadness/Source/MonsterMadness/Public
 /media/bat/SecondSSD/Projects/Unreal/MonsterMadness/Source

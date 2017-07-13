@@ -8843,13 +8843,7 @@ HEADERS += \
 	"$$MonsterMadnessRootPath/Plugins/BatInventory/Source/BatInventory/Public/BI_SlotUserWidget.h" \
 	"$$MonsterMadnessRootPath/Plugins/BatInventory/Source/BatInventory/Public/BI_UserWidget.h" \
 	"$$MonsterMadnessRootPath/Plugins/BatInventory/Source/BatInventory/Public/BatInventory.h" \
-	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Public/Inventory.h" \
-	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Public/InventoryPrivatePCH.h" \
-	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Public/InventorySlotWidget.h" \
-	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Public/InventoryWidget.h" \
-	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Public/MyActor.h" \
-	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Public/Pickup.h" \
-	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Public/TraderCharacter.h" \
+	"$$MonsterMadnessRootPath/Plugins/BatInventory/Source/BatInventory/Public/MyActor.h" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/MonsterMadness.h" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/Public/Bomb.h" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/Public/EnemyAIController.h" \

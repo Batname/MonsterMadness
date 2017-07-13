@@ -12,14 +12,13 @@
 	"SupportURL": "",
 	"CanContainContent": true,
 	"EnabledByDefault" : true,
-	"IsBetaVersion": false,
 	"Installed": false,
-
 	"Modules": [
 		{
 			"Name": "BatInventory",
-			"Type": "Developer",
-			"LoadingPhase": "Default"
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"WhitelistPlatforms" : [ "Win32", "Win64", "Linux" ]
 		}
 	]
 }

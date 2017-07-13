@@ -6830,12 +6830,7 @@ SOURCES += \
 	"$$MonsterMadnessRootPath/Plugins/BatInventory/Source/BatInventory/Private/BI_SlotUserWidget.cpp" \
 	"$$MonsterMadnessRootPath/Plugins/BatInventory/Source/BatInventory/Private/BI_UserWidget.cpp" \
 	"$$MonsterMadnessRootPath/Plugins/BatInventory/Source/BatInventory/Private/BatInventory.cpp" \
-	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Private/Inventory.cpp" \
-	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Private/InventorySlotWidget.cpp" \
-	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Private/InventoryWidget.cpp" \
-	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Private/MyActor.cpp" \
-	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Private/Pickup.cpp" \
-	"$$MonsterMadnessRootPath/Plugins/Inventory/Source/Inventory/Private/TraderCharacter.cpp" \
+	"$$MonsterMadnessRootPath/Plugins/BatInventory/Source/BatInventory/Private/MyActor.cpp" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/MonsterMadness.cpp" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/Private/Bomb.cpp" \
 	"$$MonsterMadnessRootPath/Source/MonsterMadness/Private/EnemyAIController.cpp" \

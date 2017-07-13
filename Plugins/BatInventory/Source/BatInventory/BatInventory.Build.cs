@@ -38,8 +38,8 @@ public class BatInventory : ModuleRules
 			{
 				"CoreUObject",
 				"Engine",
-				"Slate",
-				"SlateCore",
+				// "Slate",
+				// "SlateCore",
 	 			"UMG",
 				// ... add private dependencies that you statically link with here ...	
 			}

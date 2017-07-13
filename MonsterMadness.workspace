@@ -3922,12 +3922,6 @@
     <Include Path="/home/bat/Apps/UnrealEngine/Engine/Source/Runtime/MovieSceneTracks/Public/Tracks" />
     <Include Path="/home/bat/Apps/UnrealEngine/Engine/Intermediate/Build/Linux/B4D820EA/UE4Editor/Inc/MovieSceneTracks" />
     <Include Path="/home/bat/Apps/UnrealEngine/Engine/Source/Runtime/MovieSceneTracks" />
-    <Include Path="/media/bat/SecondSSD/Projects/Unreal/MonsterMadness/Plugins/Inventory/Source/Inventory/Private" />
-    <Include Path="/home/bat/Apps/UnrealEngine/Engine/Source/Inventory/Public" />
-    <Include Path="/media/bat/SecondSSD/Projects/Unreal/MonsterMadness/Plugins/Inventory/Source" />
-    <Include Path="/media/bat/SecondSSD/Projects/Unreal/MonsterMadness/Plugins/Inventory/Source/Inventory/Public" />
-    <Include Path="/media/bat/SecondSSD/Projects/Unreal/MonsterMadness/Plugins/Inventory/Intermediate/Build/Linux/B4D820EA/UE4Editor/Inc/Inventory" />
-    <Include Path="/media/bat/SecondSSD/Projects/Unreal/MonsterMadness/Plugins/Inventory/Source/Inventory" />
     <Include Path="/media/bat/SecondSSD/Projects/Unreal/MonsterMadness/Source/MonsterMadness/Private" />
     <Include Path="/media/bat/SecondSSD/Projects/Unreal/MonsterMadness/Source/MonsterMadness/Public" />
     <Include Path="/media/bat/SecondSSD/Projects/Unreal/MonsterMadness/Source" />

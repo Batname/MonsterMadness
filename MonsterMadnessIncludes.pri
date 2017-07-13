@@ -2241,12 +2241,6 @@ INCLUDEPATH += \
 	Plugins/BatInventory/Source/BatInventory/Public \
 	Plugins/BatInventory/Intermediate/Build/Linux/B4D820EA/UE4Editor/Inc/BatInventory \
 	Plugins/BatInventory/Source/BatInventory \
-	Plugins/Inventory/Source/Inventory/Private \
-	/home/bat/Apps/UnrealEngine/Engine/Source/Inventory/Public \
-	Plugins/Inventory/Source \
-	Plugins/Inventory/Source/Inventory/Public \
-	Plugins/Inventory/Intermediate/Build/Linux/B4D820EA/UE4Editor/Inc/Inventory \
-	Plugins/Inventory/Source/Inventory \
 	Source/MonsterMadness/Private \
 	Source/MonsterMadness/Public \
 	Source \

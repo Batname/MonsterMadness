@@ -116,7 +116,6 @@ void APlayerHUD::HandleInventoryInput()
 			BI_UserWidget->ItemsArray = PlayerCharacter->GetInventory();
 		}
 
-		UE_LOG(LogTemp, Warning, TEXT("TRY TO SHOW"));
 		BI_UserWidget->Show();
 
 
